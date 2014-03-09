@@ -1,6 +1,6 @@
 /**************************************************************
-    Problem: 1548  µÚ722607ºÅÌá½»
-    User: ÌìÇÚ
+    Problem: 1548  ç¬¬722607å·æäº¤
+    User: å¤©å‹¤
     Language: C
     Result: Accepted
     Time:30 ms
@@ -35,7 +35,7 @@ int max_points(P2 p,int n){
     if(n<=2) return n;
     for(i=0;i<n-1;i++)
         for(j=i+1;j<n;j++)
-            if(fabs(p[i].x-p[j].x)<M && fabs(p[i].y-p[j].y)<M){ //¼ì²éÖØ¸´µÄµã
+            if(fabs(p[i].x-p[j].x)<M && fabs(p[i].y-p[j].y)<M){ //æ£€æŸ¥é‡å¤çš„ç‚¹
                 p[j].x=p[n-1].x;
                 p[j].y=p[n-1].y;
                 p[i].n++;
