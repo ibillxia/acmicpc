@@ -18,8 +18,8 @@ public:
 		return;
 	}
 
-	void fill(vector<vector<char> > &board, int k){ // TLE, complexity: O(k^n)
-		if(k==81)return;
+	bool fill(vector<vector<char> > &board, int k){
+		if(k==81)return true;
 		int i,j,ii,x,y;
 		i=k/9,j=k%9;
 		vector<bool> used(9,false);
@@ -41,20 +41,21 @@ public:
 						if(!used[ii])vc.push_back(char(ii+'1'));
 					}
 					if(vc.size()==0){
-						return;
+						return 0;
 					}else{
 						for(ii=0;ii<vc.size();ii++){
 							board[i][j]=vc[ii];
-							fill(board,k+1);
+							if(fill(board,k+1))return true;
 							board[i][j]='.';
 						}
+						return false;
 					}
 				}
 				k++;
 			}
 			j=0;
 		}
-		return;
+		return true;
 	}
 };
 
@@ -65,11 +66,12 @@ int main()
 	int i,j;
 	char ch;
 	while(1){
-		cout<<"input:"<<endl;
+		cout<<"input(input 0 to exit):"<<endl;
 		for(i=0;i<9;i++){
+			board[i].clear();
 			for(j=0;j<9;j++){
 				cin>>ch;
-				if(ch==EOF)return 0;
+				if(ch=='0')return 0;
 				board[i].push_back(ch);
 			}
 		}
