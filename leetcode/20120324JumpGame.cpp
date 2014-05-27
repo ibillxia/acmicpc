@@ -13,7 +13,25 @@ using namespace std;
 
 class Solution {
 public:
-	bool canJump(int A[],int n){ // TLE
+	bool canJump(int A[],int n){
+		if(n<2)return true;
+		if(n==2&&A[0]>0)return true;
+		if(A[0]<1)return false;
+		if(A[0]>=n-1)return true;
+		int i,j;
+		char *can = new char[n];
+		memset(can,0,n);
+		can[0]=1;
+		for(i=0;i<n-1;i++){
+			if(!can[i])continue;
+			if(i+A[i]>n-2)return true;
+			memset(can+i+1,1,A[i]);
+		}
+		delete[] can;
+		return false;
+	}
+
+	bool canJump2(int A[],int n){ // TLE
 		if(n<2)return true;
 		if(n==2&&A[0]>0)return true;
 		if(A[0]<1)return false;
@@ -55,10 +73,11 @@ public:
 	}
 };
 
+int A[25002];
 int main()
 {
 	Solution sol;
-	int n,A[512];
+	int n;
 	while(cin>>n){
 		for(int i=0;i<n;i++)cin>>A[i];
 		bool ans = sol.canJump(A,n);
